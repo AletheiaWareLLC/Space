@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Copyright 2018 Aletheia Ware LLC
+# Copyright 2019 Aletheia Ware LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -17,4 +17,4 @@
 set -e
 set -x
 
-protoc --proto_path=../BC --proto_path=. space.proto $@
+protoc --proto_path=../BC --proto_path=../Finance --proto_path=. space.proto $@

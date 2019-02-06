@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 Aletheia Ware LLC
+ * Copyright 2019 Aletheia Ware LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,13 +17,14 @@
 syntax = "proto3";
 
 option go_package = "github.com/AletheiaWareLLC/spacego";
-option java_outer_classname = "Space";
+option java_outer_classname = "SpaceProto";
 option java_package = "com.aletheiaware.space";
 option optimize_for = LITE_RUNTIME;
 
 package space;
 
 import "bc.proto";
+import "finance.proto";
 
 message Meta {
     // Name of file
@@ -32,31 +33,33 @@ message Meta {
     fixed64 size = 2;
     // MIME type of file
     string type = 3;
-    // bc.Message.reference will hold the reference to the file's data and preview data
-}
-
-// Represents a user registering for Space
-message Registration {
-    bytes public_key = 1;
-    string customer_id = 2;
-    string payment_id = 3;
-    string product_id = 4;
-    string plan_id = 5;
-    string subscription_id = 6;
+    // bc.Record.reference will hold the reference to the file's data and preview data
 }
 
 message StorageRequest {
-    bytes public_key = 1;
-    string customer_id = 2;
-    string payment_id = 3;
+    string alias = 1;
+    finance.PaymentProcessor processor = 2;
+    string customer_id = 3;
+    string payment_id = 4;
     message Bundle {
+        // The key used to encrypt the payload.
         bytes key = 1;
-        bytes payload = 2;
-        bytes signature = 3;
+        // The algorithm used to encrypt the key.
+        bc.EncryptionAlgorithm key_encryption_algorithm = 2;
+        // The actual payload
+        bytes payload = 3;
+        // The algorithm used to compress the payload.
+        bc.CompressionAlgorithm compression_algorithm = 4;
+        // The algorithm used to encrypt the payload.
+        bc.EncryptionAlgorithm encryption_algorithm = 5;
+        // Signature of payload (signed by the file owner's private key).
+        bytes signature = 6;
+        // The algorithm used to sign the payload.
+        bc.SignatureAlgorithm signature_algorithm = 7;
     }
-    Bundle file = 4;
-    Bundle meta = 5;
-    Bundle preview = 6;
+    Bundle file = 5;
+    Bundle meta = 6;
+    Bundle preview = 7;
 }
 
 message StorageResponse {
