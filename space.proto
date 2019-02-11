@@ -24,7 +24,6 @@ option optimize_for = LITE_RUNTIME;
 package space;
 
 import "bc.proto";
-import "finance.proto";
 
 message Meta {
     // Name of file
@@ -33,37 +32,29 @@ message Meta {
     fixed64 size = 2;
     // MIME type of file
     string type = 3;
-    // bc.Record.reference will hold the reference to the file's data and preview data
+    // bc.Record.reference will hold the reference to the file's data
 }
 
-message StorageRequest {
-    string alias = 1;
-    finance.PaymentProcessor processor = 2;
-    string customer_id = 3;
-    string payment_id = 4;
-    message Bundle {
-        // The key used to encrypt the payload.
-        bytes key = 1;
-        // The algorithm used to encrypt the key.
-        bc.EncryptionAlgorithm key_encryption_algorithm = 2;
-        // The actual payload
-        bytes payload = 3;
-        // The algorithm used to compress the payload.
-        bc.CompressionAlgorithm compression_algorithm = 4;
-        // The algorithm used to encrypt the payload.
-        bc.EncryptionAlgorithm encryption_algorithm = 5;
-        // Signature of payload (signed by the file owner's private key).
-        bytes signature = 6;
-        // The algorithm used to sign the payload.
-        bc.SignatureAlgorithm signature_algorithm = 7;
-    }
-    Bundle file = 5;
-    Bundle meta = 6;
-    Bundle preview = 7;
+message Preview {
+    // MIME type of preview
+    string type = 1;
+    // Preview data
+    bytes data = 2;
 }
 
-message StorageResponse {
-    bc.Reference file = 1;
-    bc.Reference meta = 2;
-    bc.Reference preview = 3;
+message Share {
+    // The reference to the meta being shared
+    bc.Reference meta_reference = 1;
+    // The encryption key for meta
+    bytes meta_key = 2;
+    // References to chunks being shared are in bc.Record.Reference
+    // A list of encryption keys for chunks
+    repeated bytes chunk_key = 3;
+}
+
+message Tag {
+    // The value of tag applied to meta
+    string value = 1;
+    // The reason for tagging
+    string reason = 2;
 }
