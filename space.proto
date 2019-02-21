@@ -41,9 +41,9 @@ message Preview {
     // Preview data
     bytes data = 2;
     // Preview width
-    int width = 3;
+    uint32 width = 3;
     // Preview height
-    int height = 4;
+    uint32 height = 4;
 }
 
 message Share {
