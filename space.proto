@@ -32,7 +32,7 @@ message Meta {
     fixed64 size = 2;
     // MIME type of file
     string type = 3;
-    // bc.Record.reference will hold the reference to the file's data
+    // bc.Record.reference will hold the references to the file's data
 }
 
 message Preview {
@@ -40,6 +40,10 @@ message Preview {
     string type = 1;
     // Preview data
     bytes data = 2;
+    // Preview width
+    int width = 3;
+    // Preview height
+    int height = 4;
 }
 
 message Share {
