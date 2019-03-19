@@ -51,9 +51,13 @@ message Share {
     bc.Reference meta_reference = 1;
     // The encryption key for meta
     bytes meta_key = 2;
-    // References to chunks being shared are in bc.Record.Reference
+    // References to chunks being shared are in bc.Record.Reference of Meta
     // A list of encryption keys for chunks
     repeated bytes chunk_key = 3;
+    // A list of references to previews
+    repeated bc.Reference preview_reference = 4;
+    // A list of encryption keys for previews
+    repeated bytes preview_key = 5;
 }
 
 message Tag {
