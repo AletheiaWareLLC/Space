@@ -32,7 +32,7 @@ message Meta {
     fixed64 size = 2;
     // MIME type of file
     string type = 3;
-    // bc.Record.reference will hold the references to the file's data
+    // bc.Record.Reference will hold the references to the data
 }
 
 message Preview {
@@ -44,14 +44,16 @@ message Preview {
     uint32 width = 3;
     // Preview height
     uint32 height = 4;
+    // bc.Record.Reference[0] will hold the reference to the metadata
 }
 
 message Share {
+    // bc.Record.Access[0] will hold recipient's access, [1] will hold sender's access
     // The reference to the meta being shared
     bc.Reference meta_reference = 1;
     // The encryption key for meta
     bytes meta_key = 2;
-    // References to chunks being shared are in bc.Record.Reference of Meta
+    // References to chunks being shared are in bc.Record.Reference of metadata
     // A list of encryption keys for chunks
     repeated bytes chunk_key = 3;
     // A list of references to previews
@@ -65,4 +67,5 @@ message Tag {
     string value = 1;
     // The reason for tagging
     string reason = 2;
+    // bc.Record.Reference[0] will hold the reference to the metadata
 }
