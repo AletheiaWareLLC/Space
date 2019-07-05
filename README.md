@@ -1,7 +1,7 @@
 Space
 =====
 
-End-to-end encrypted, blockchain-based, cloud storage platform.
+Secure, Private, Storage.
 
 This project defines the data structures of Space as protocol buffers (https://developers.google.com/protocol-buffers/), allowing implementations in C, C++, C#, Dart, Go, Java, and/or Python.
 
