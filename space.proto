@@ -24,6 +24,7 @@ option optimize_for = LITE_RUNTIME;
 package space;
 
 import "bc.proto";
+import "finance.proto";
 
 message Meta {
     // Name of file
@@ -68,4 +69,20 @@ message Tag {
     // The reason for tagging
     string reason = 2;
     // bc.Record.Reference[0] will hold the reference to the metadata
+}
+
+message Miner {
+    string alias = 1;
+    // The domain name of the miner
+    // Eg. space.aletheiaware.com
+    string domain = 2;
+    finance.Service service = 3;
+}
+
+message Registrar {
+    string alias = 1;
+    // The domain name of the registrar
+    // Eg. space.aletheiaware.com
+    string domain = 2;
+    finance.Service service = 3;
 }
