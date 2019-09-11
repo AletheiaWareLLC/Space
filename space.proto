@@ -49,7 +49,6 @@ message Preview {
 }
 
 message Share {
-    // bc.Record.Access[0] will hold recipient's access, [1] will hold sender's access
     // The reference to the meta being shared
     bc.Reference meta_reference = 1;
     // The encryption key for meta
@@ -72,17 +71,11 @@ message Tag {
 }
 
 message Miner {
-    string alias = 1;
-    // The domain name of the miner
-    // Eg. space.aletheiaware.com
-    string domain = 2;
-    finance.Service service = 3;
+    finance.Merchant merchant = 1;
+    finance.Service service = 2;
 }
 
 message Registrar {
-    string alias = 1;
-    // The domain name of the registrar
-    // Eg. space.aletheiaware.com
-    string domain = 2;
-    finance.Service service = 3;
+    finance.Merchant merchant = 1;
+    finance.Service service = 2;
 }
