@@ -19,7 +19,6 @@ syntax = "proto3";
 option go_package = "github.com/AletheiaWareLLC/spacego";
 option java_outer_classname = "SpaceProto";
 option java_package = "com.aletheiaware.space";
-option optimize_for = LITE_RUNTIME;
 
 package space;
 
