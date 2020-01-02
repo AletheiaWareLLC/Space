@@ -17,4 +17,4 @@
 set -e
 set -x
 
-protoc --proto_path=../BC --proto_path=../Finance --proto_path=. space.proto $@
+protoc --proto_path=../BC --proto_path=../Crypto --proto_path=../Finance --proto_path=. space.proto $@
