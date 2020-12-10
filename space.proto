@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 Aletheia Ware LLC
+ * Copyright 2019-2020 Aletheia Ware LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,17 +22,22 @@ option java_package = "com.aletheiaware.space";
 
 package space;
 
-import "bc.proto";
 import "finance.proto";
 
+message Delta {
+    // File Offset.
+    uint64 offset = 1;
+    // Number of Bytes Removed.
+    uint64 remove = 2;
+    // Bytes Added.
+    bytes add = 3;
+}
+
 message Meta {
-    // Name of file
+    // Name of file.
     string name = 1;
-    // Size of file in bytes
-    fixed64 size = 2;
-    // MIME type of file
+    // MIME type of file.
     string type = 3;
-    // bc.Record.Reference will hold the references to the data
 }
 
 message Preview {
@@ -44,21 +49,6 @@ message Preview {
     uint32 width = 3;
     // Preview height
     uint32 height = 4;
-    // bc.Record.Reference[0] will hold the reference to the metadata
-}
-
-message Share {
-    // The reference to the meta being shared
-    bc.Reference meta_reference = 1;
-    // The encryption key for meta
-    bytes meta_key = 2;
-    // References to chunks being shared are in bc.Record.Reference of metadata
-    // A list of encryption keys for chunks
-    repeated bytes chunk_key = 3;
-    // A list of references to previews
-    repeated bc.Reference preview_reference = 4;
-    // A list of encryption keys for previews
-    repeated bytes preview_key = 5;
 }
 
 message Tag {
@@ -67,11 +57,6 @@ message Tag {
     // The reason for tagging
     string reason = 2;
     // bc.Record.Reference[0] will hold the reference to the metadata
-}
-
-message Miner {
-    finance.Merchant merchant = 1;
-    finance.Service service = 2;
 }
 
 message Registrar {
