@@ -16,7 +16,7 @@
 
 syntax = "proto3";
 
-option go_package = "github.com/AletheiaWareLLC/spacego";
+option go_package = "aletheiaware.com/spacego";
 option java_outer_classname = "SpaceProto";
 option java_package = "com.aletheiaware.space";
 
