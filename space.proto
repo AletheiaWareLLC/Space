@@ -27,10 +27,10 @@ import "finance.proto";
 message Delta {
     // File Offset.
     uint64 offset = 1;
-    // Number of Bytes Removed.
-    uint64 remove = 2;
-    // Bytes Added.
-    bytes add = 3;
+    // Number of Bytes Deleted.
+    uint64 delete = 2;
+    // Bytes Inserted.
+    bytes insert = 3;
 }
 
 message Meta {
